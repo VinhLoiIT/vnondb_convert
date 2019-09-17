@@ -5,9 +5,12 @@
 - `python --help` for help
 
 ## Quick run!
-`python InkData_line line`
-`python InkData_word word`
-`python InkData_paragraph paragraph`
+### To convert line
+`python main.py ./InkData_line ./line`
+### To convert word
+`python main.py ./InkData_word ./word`
+### To convert paragraph
+`python main.py ./InkData_paragraph ./paragraph`
 
 ## Detail
 - `python <data_path> <output_dir> --line_width <line_width> --dpi <dpi>`
