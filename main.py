@@ -12,8 +12,10 @@ def make_annotations_worker(args):
 def create_dir_if_not_exist(dir_path):
     if not os.path.exists(dir_path):
         os.mkdir(dir_path)
+        print(f'Created {dir_path}')
 
 def get_list_files_from_file(input_file):
+    print(f'Get list files from {input_file}')
     with open(input_file) as f:
         lines = f.readlines()
     return [line.rstrip() for line in lines]  # remove '\n'
@@ -62,8 +64,9 @@ if __name__ == "__main__":
         assert len(convert_files) == len(output_dirs) == len(line_width) == len(dpi) == total
         convert_info = zip(convert_files, output_dirs, line_width, dpi)
 
+        print('Start converting')
         count = 0
         for _ in executor.map(make_annotations_worker, convert_info):
             count = count + 1
-            print(f'{count}/{total}')
+            print(f'Converted {count}/{total}')
     print('Done!')
