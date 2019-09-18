@@ -61,7 +61,7 @@ def make_annotations(input_inkml, output_dir, line_width=2, dpi=300):
         output_basename = os.path.splitext(
             os.path.basename(input_inkml))[0]
         output_filename = output_basename + '_' + annotation.id
-        output_image_name = output_filename + '.jpg'
+        output_image_name = output_filename + '.png'
         output_label_name = output_filename + '.txt'
 
         output_image_path = os.path.join(output_dir, output_image_name)
