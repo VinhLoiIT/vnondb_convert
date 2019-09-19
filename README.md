@@ -25,6 +25,8 @@ VNOnDB_ICFHR2018_dataSplit/
 ```
 
 # Run
+**Note:** This is very time consuming process. I have used multiprocess to speedup, but it depends on your machine
+
 ## Help
 - `python --help` for help
 
@@ -42,5 +44,5 @@ VNOnDB_ICFHR2018_dataSplit/
 - `<data_path>` is a directory contains `*.inkml` files of dataset, will be one of `InkData_word`, `InkData_line` or `InkData_paragraph` if download and extract from the main page
 - `<output_dir>` prefix of the directories
   - e.g. if `<output_dir>=./word`, this will create `./word_train`, `./word_val` and `./word_test` directories
-- (Optional) `<line_width>` is line stroke width, default is `2`
-- (Optional) `<dpi>`, default is `300`
+- *(Optional)* `<line_width>` is line stroke width, default is `2`
+- *(Optional)* `<dpi>`, default is `300`
