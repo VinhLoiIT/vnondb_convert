@@ -5,6 +5,16 @@
 
 For more information about this dataset, please go to the [main page](http://tc11.cvc.uab.es/datasets/HANDS-VNOnDB2018_1/)
 
+# Examples
+With `dpi=300`, below are some examples from database after converted
+
+| Level | `line_width=1` | `line_width=2` |
+| --- | --- | --- |
+| word | ![""](./images/word_1_300.png "Word with line_width=1") | ![""](./images/word_2_300.png "Word with line_width=2") |
+| line | ![""](./images/line_1_300.png "Line with line_width=1") | ![""](./images/line_2_300.png "Line with line_width=2") |
+| paragraph | ![""](./images/paragraph_1_300.png "Paragraph with line_width=1") | ![""](./images/paragraph_2_300.png "Paragraph with line_width=2") |
+
+
 # Prerequisite
 Install libraries
 - `pip install -r requirements.txt`
