@@ -1,7 +1,4 @@
-InkData_line/*
-InkData_word/*
-InkData_paragraph/*
-VNOnDB_ICFHR2018_dataSplit/*
+data/*
 __pycache__
 .ipynb_checkpoints/
 .vscode/
