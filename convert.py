@@ -66,7 +66,7 @@ def convert_label_only(ink_files, out_label_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-l', '--level', type=str, dest='level', choices=['word', 'line', 'paragraph'], default='word')
+    parser.add_argument(type=str, dest='level', choices=['word', 'line', 'paragraph'])
     parser.add_argument('-w', '--line_width', type=float, dest='line_width', default=2)
     parser.add_argument('-dpi', '--dpi', type=int, dest='dpi', default=300)
     parser.add_argument('--label_only', action='store_true', dest='label_only')
@@ -117,7 +117,7 @@ if __name__ == "__main__":
 
         line_width = args.line_width
         dpi = args.dpi
-        
+
         convert(train_ink_files, out_img_train, out_label_train, line_width, dpi)
         convert(val_ink_files, out_img_validation, out_label_validation, line_width, dpi)
         convert(test_ink_files, out_img_test, out_label_test, line_width, dpi)

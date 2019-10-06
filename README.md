@@ -23,36 +23,36 @@ You also have dataset **and** datasplit downloaded and extracted. Your directory
 ```
 .git/
 .gitignore
-InkData_line/
-InkData_paragraph/
-InkData_word/
-lib.py
+data/InkData_line/
+data/InkData_paragraph/
+data/InkData_word/
+data/VNOnDB_ICFHR2018_dataSplit/
+images/
 LICENSE
-main.py
+convert.py
+convert.ipynb
 README.md
 requirements.txt
-VNOnDB_ICFHR2018_dataSplit/
 ```
 
 # Run
-**Note:** This is very time consuming process. I have used multiprocess to speedup, but it depends on your machine
+**Note:** This is a very time consuming process!!
 
 ## Help
-- `python --help` for help
+- `python convert.py --help` for help
 
 ## Quick run!
 - To convert line
-  - `python main.py ./InkData_line ./line`
+  - `python convert.py line`
 - To convert word
-  - `python main.py ./InkData_word ./word`
+  - `python convert.py word`
 - To convert paragraph
-  - `python main.py ./InkData_paragraph ./paragraph`
+  - `python convert.py paragraph`
+
+**Note**: Results `*.csv` files and image folders will be stored in `./data`
 
 ## Detail
-`python <data_path> <output_dir> --line_width <line_width> --dpi <dpi>`
-
-- `<data_path>` is a directory contains `*.inkml` files of dataset, will be one of `InkData_word`, `InkData_line` or `InkData_paragraph` if download and extract from the main page
-- `<output_dir>` prefix of the directories
-  - e.g. if `<output_dir>=./word`, this will create `./word_train`, `./word_val` and `./word_test` directories
+`python convert.py --line_width <line_width> --dpi <dpi> --label_only`
 - *(Optional)* `<line_width>` is line stroke width, default is `2`
 - *(Optional)* `<dpi>`, default is `300`
+- *(Optional)* `--label_only`, if specified, this will only generate `*.csv`. This is useful in case you already have images and just need the label files.
