@@ -82,6 +82,7 @@ if __name__ == "__main__":
     out_label_train = os.path.join(data_dir, f'train_{level}.csv')
     out_label_validation = os.path.join(data_dir, f'validation_{level}.csv')
     out_label_test = os.path.join(data_dir, f'test_{level}.csv')
+    out_label_all = os.path.join(data_dir, f'all_{level}.csv')
 
     icfhr_datasplit_dir = os.path.join(data_dir, 'VNOnDB_ICFHR2018_dataSplit')
     train_set = os.path.join(icfhr_datasplit_dir, 'train_set.txt')
@@ -121,3 +122,5 @@ if __name__ == "__main__":
         convert(train_ink_files, out_img_train, out_label_train, line_width, dpi)
         convert(val_ink_files, out_img_validation, out_label_validation, line_width, dpi)
         convert(test_ink_files, out_img_test, out_label_test, line_width, dpi)
+
+    convert_label_only(train_ink_files+val_ink_files+test_ink_files, out_label_all)
