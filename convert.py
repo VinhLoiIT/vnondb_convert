@@ -7,20 +7,24 @@ import pandas as pd
 import argparse
 from tqdm import trange, tqdm
 
-def make_image_file(coord_groups, output_path: str, line_width=2, dpi=300):
-    figure = plt.figure(dpi=dpi)
+def make_image_file(coord_groups, output_path: str, line_width, dpi):
     plt.gca().set_aspect('equal', adjustable='box')
     plt.gca().invert_yaxis()
-    plt.axis('off')
+    plt.gca().set_axis_off()
+    plt.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
+    plt.gca().xaxis.set_major_locator(plt.NullLocator())
+    plt.gca().yaxis.set_major_locator(plt.NullLocator())
 
     for group in coord_groups:
-        data = np.array(group)
-        x, y = zip(*data)
-        plt.plot(x, y, linewidth=line_width, c='black')
-    figure.savefig(output_path, bbox_inches='tight')
+        plt.plot(group[:, 0], group[:, 1], linewidth=line_width, c='black')
+
+    if dpi is None:
+        plt.savefig(output_path, bbox_inches='tight', pad_inches=0)
+    else:
+        plt.savefig(output_path, bbox_inches='tight', pad_inches=0, dpi=dpi)
     plt.close()
 
-def convert(ink_files, out_img_dir, out_label_path, line_width=2, dpi=300):
+def convert(ink_files, out_img_dir, out_label_path, line_width=2, dpi=None):
     if not os.path.exists(out_img_dir):
         os.mkdir(out_img_dir)
         
@@ -45,7 +49,7 @@ def convert(ink_files, out_img_dir, out_label_path, line_width=2, dpi=300):
                     coords = np.array([int(coord) for coord in coords if coord != ''])
                     assert len(coords) == 2
                     coord_group.append(coords)
-                coord_groups.append(coord_group)
+                coord_groups.append(np.stack(coord_group))
             make_image_file(coord_groups, os.path.join(out_img_dir, sample_id) + '.png', line_width, dpi)
     annotations.to_csv(out_label_path, sep='\t')
 
@@ -68,7 +72,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(type=str, dest='level', choices=['word', 'line', 'paragraph'])
     parser.add_argument('-w', '--line_width', type=float, dest='line_width', default=2)
-    parser.add_argument('-dpi', '--dpi', type=int, dest='dpi', default=300)
+    parser.add_argument('-dpi', '--dpi', type=int, dest='dpi', default=None)
     parser.add_argument('--label_only', action='store_true', dest='label_only')
 
     args = parser.parse_args()
